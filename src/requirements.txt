@@ -5,3 +5,4 @@ db-dtypes
 fastapi
 uvicorn
 pydantic
+coverage

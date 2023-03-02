@@ -6,3 +6,6 @@ filter.dat
 __pycache__
 create_image.sh
 .gitlab-ci.yml
+.coverage
+.vscode
+htmlcov

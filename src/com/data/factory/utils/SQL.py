@@ -17,23 +17,28 @@ class SQL():
 
     def get_sql_statement(self, df: pd.DataFrame, job_id: str) -> str:
         if df.size <= 0:
-            raise ValueError(f"Not found data for job {job_id}")
+            raise Exception(f"Not found data for job {job_id}")
         statement = str(df["query"][0])
         return statement.strip()
 
     def get_values_from_insert_statement(self, statement: str) -> list:
+        if statement is None or statement == "":
+            raise Exception("statement cannot be None or empty.")
         regex = r"([Vv]{1}[Aa]{1}[Ll]{1}[Uu]{1}[Ee]{1}[Ss]{1})"
         statement_splitted = re.split(regex, statement)
+        if len(statement_splitted) < 3:
+            raise Exception(f"Invalid statement {statement} for {regex}")
         common = Common()
-        values = common.replace_first_occurrence(statement_splitted[2],
+        statement_values = statement_splitted[2].strip()
+        values = common.replace_first_occurrence(statement_values,
                                                  "(",
-                                                 "",
-                                                 1)
+                                                 "")
         values = common.replace_last_occurrence(values, ")", "", 1)
         values = common.replace_last_occurrence(values, ";", "", 1)
-        return values.split(",")
+        return [value.strip().replace("'", "").replace('"', '') \
+                for value in values.split(",")]
 
-    def get_json_from_insert_statement(self, statements: list, fields: list):
+    def get_json_from_insert_statement(self, statements: list, fields: list) -> dict:
         output = {}
         common = Common()
         for i in range(0, len(fields)):
