@@ -19,5 +19,6 @@ class testCommon(unittest.TestCase):
         actual = common.cast("1", "INTEGER")
         self.assertEqual(expected, actual)
 
+
 if __name__ == '__main__':
     unittest.main()

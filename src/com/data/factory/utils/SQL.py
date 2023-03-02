@@ -35,10 +35,12 @@ class SQL():
                                                  "")
         values = common.replace_last_occurrence(values, ")", "", 1)
         values = common.replace_last_occurrence(values, ";", "", 1)
-        return [value.strip().replace("'", "").replace('"', '') \
+        return [value.strip().replace("'", "").replace('"', '')
                 for value in values.split(",")]
 
-    def get_json_from_insert_statement(self, statements: list, fields: list) -> dict:
+    def get_json_from_insert_statement(self,
+                                       statements: list,
+                                       fields: list) -> dict:
         output = {}
         common = Common()
         for i in range(0, len(fields)):

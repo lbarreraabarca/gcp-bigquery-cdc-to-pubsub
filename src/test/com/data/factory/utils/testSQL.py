@@ -45,15 +45,15 @@ class test_SQL(unittest.TestCase):
 
     def test_get_values_from_insert_statement_6(self):
         sql = SQL()
-        statement = "INSERT INTO table (field1, field2) values('my message', 2)"
+        statement = "INSERT INTO table(field1, field2) values('my message', 2)"
         expected = ["my message", "2"]
         actual = sql.get_values_from_insert_statement(statement)
         self.assertEqual(expected, actual)
 
     def test_get_values_from_insert_statement_7(self):
         sql = SQL()
-        statement = "INSERT INTO table (field1, field2) values('my message', 0.7)"
-        expected = ["my message", "0.7"]
+        statement = "INSERT INTO table (field1, field2) values('my', 0.7)"
+        expected = ["my", "0.7"]
         actual = sql.get_values_from_insert_statement(statement)
         self.assertEqual(expected, actual)
 
@@ -62,6 +62,7 @@ class test_SQL(unittest.TestCase):
         job_id = "1"
         actual = sql.create_query(job_id)
         self.assertTrue("1" in actual)
+
 
 if __name__ == '__main__':
     unittest.main()
