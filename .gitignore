@@ -1,0 +1,8 @@
+deploy.sh
+.terraform
+.terraform.lock.hcl
+venv
+filter.dat
+__pycache__
+create_image.sh
+.gitlab-ci.yml

@@ -1,0 +1,6 @@
+steps:
+- name: 'gcr.io/cloud-builders/docker'
+  args: [ 'build', '-t', 'gcr.io/$_GCP_PROJECT_ID/$_APPNAME:latest', '.' ]
+logsBucket: 'gs://$_LOG_BUCKET/$_CLOUD_RUN_NAME/cloud-build/logs'
+
+images: ['gcr.io/$_GCP_PROJECT_ID/$_APPNAME:latest']
