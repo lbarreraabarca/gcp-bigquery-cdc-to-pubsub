@@ -7,8 +7,7 @@ class RequestParser():
         return self.data["protoPayload"]["methodName"]
 
     def get_job_id(self) -> str:
-        job_id = self \
-            .data["protoPayload"]["metadata"]["tableDataChange"]["jobName"]
+        job_id = self.data["protoPayload"]["metadata"]["tableDataChange"]["jobName"]
         job_splitted = job_id.split("/")
         return job_splitted[len(job_splitted)-1]
 
