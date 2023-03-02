@@ -3,6 +3,8 @@ from com.data.factory.ports.Encoder import Encoder
 from com.data.factory.adapters.Base64Encode import Base64Encode
 from com.data.factory.adapters.BigQueryOperator import BigQueryOperator
 from com.data.factory.adapters.RequestParser import RequestParser
+from com.data.factory.models.Payload import Payload
+from com.data.factory.models.Request import Request
 from com.data.factory.utils.logger import logging
 from com.data.factory.utils.SQL import SQL
 
@@ -10,15 +12,15 @@ LOG = logging.getLogger(__name__)
 
 
 class InsertService(object):
-    def invoke(self, payload: dict) -> dict:
+    def invoke(self, request: Request) -> dict:
         try:
-            encoded_data = payload["message"]["data"]
+            encoded_data = request.message.data
             LOG.info(f"Processing payload {encoded_data}")
             encoder: Encoder = Base64Encode()
             decoded_data = encoder.decode(encoded_data)
             json_data = json.loads(decoded_data)
-            parser = RequestParser(json_data)
-            LOG.info(f"")
+            payload = Payload(**json_data)
+            parser = RequestParser(payload)
             job_id = parser.get_job_id()
             LOG.info(f"methodName {parser.get_method_name()} JobId {job_id}")
 

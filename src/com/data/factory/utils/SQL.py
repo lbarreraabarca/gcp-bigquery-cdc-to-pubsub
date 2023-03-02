@@ -43,6 +43,8 @@ class SQL():
                                        fields: list) -> dict:
         output = {}
         common = Common()
+        if len(fields) != len(statements):
+            raise Exception("fields and statements has not the same size.")
         for i in range(0, len(fields)):
             field_name = fields[i].split(":")[0]
             field_type = fields[i].split(":")[1]

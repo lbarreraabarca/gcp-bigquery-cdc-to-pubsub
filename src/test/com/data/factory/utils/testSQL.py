@@ -63,6 +63,25 @@ class test_SQL(unittest.TestCase):
         actual = sql.create_query(job_id)
         self.assertTrue("1" in actual)
 
+    def test_get_json_from_insert_statement_1(self):
+        sql = SQL()
+        statements = ["1", "text", "2023-02-23 12:07:24.246459 UTC"]
+        fields = ["f1:INTEGER", "f2:STRING", "f3:TIMESTAMP"]
+        expected = {
+            "f1": 1,
+            "f2": "text",
+            "f3": "2023-02-23 12:07:24.246459 UTC"
+        }
+        actual = sql.get_json_from_insert_statement(statements, fields)
+        self.assertEqual(expected, actual)
+
+    def test_get_json_from_insert_statement_2(self):
+        sql = SQL()
+        statements = ["1", "text", "2023-02-23 12:07:24.246459 UTC"]
+        fields = ["f1:INTEGER", "f2:STRING"]
+        with self.assertRaises(Exception) as e:
+            sql.get_json_from_insert_statement(statements, fields)
+
 
 if __name__ == '__main__':
     unittest.main()

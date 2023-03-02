@@ -16,8 +16,9 @@ class Common():
         return new.join(value_splitted)
 
     def cast(self, value: str, type: str):
+        if value is None:
+            return None
         if type == "STRING" or type == "TIMESTAMP":
             return str(value.replace("'", "").replace('"', ''))
         if type == "INTEGER":
             return int(value)
-        return None
