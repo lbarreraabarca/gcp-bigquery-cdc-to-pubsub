@@ -8,3 +8,4 @@ pydantic
 coverage
 google-cloud-pubsub
 pykafka
+kafka-python
