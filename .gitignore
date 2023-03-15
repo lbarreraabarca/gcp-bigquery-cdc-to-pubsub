@@ -9,3 +9,6 @@ create_image.sh
 .coverage
 .vscode
 htmlcov
+insert.py
+env
+docker-compose.yml

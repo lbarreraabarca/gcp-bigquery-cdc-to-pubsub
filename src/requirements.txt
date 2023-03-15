@@ -6,3 +6,5 @@ fastapi
 uvicorn
 pydantic
 coverage
+google-cloud-pubsub
+pykafka
