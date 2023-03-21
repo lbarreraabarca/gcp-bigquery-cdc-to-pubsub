@@ -13,6 +13,7 @@ class SQL():
             FROM
                 {region}.INFORMATION_SCHEMA.JOBS_BY_PROJECT
             WHERE job_id = "{job_id}"
+            AND statement_type = "INSERT"
         """
 
     def get_sql_statement(self, df: pd.DataFrame, job_id: str) -> str:

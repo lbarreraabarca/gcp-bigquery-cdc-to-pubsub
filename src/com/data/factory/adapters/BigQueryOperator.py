@@ -1,5 +1,8 @@
 from google.cloud import bigquery
 import pandas as pd
+from com.data.factory.utils.logger import logging
+
+LOG = logging.getLogger(__name__)
 
 
 class BigQueryOperator():
@@ -10,8 +13,11 @@ class BigQueryOperator():
     def query(self, query: str) -> pd.DataFrame:
         if query is None or query == "":
             raise ValueError("query cannot be None or empty.")
-        job = self.client.query(query)
-        return job.to_dataframe()
+        try:
+            job = self.client.query(query)
+            return job.to_dataframe()
+        except Exception as e:
+            raise RuntimeError(e)
 
     def get_table_schema(self,
                          project_id: str,

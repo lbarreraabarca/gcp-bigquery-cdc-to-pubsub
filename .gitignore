@@ -12,3 +12,9 @@ htmlcov
 insert.py
 env
 docker-compose.yml
+sa.yml
+sa.json
+pod_*.yaml
+binding-sa.sh
+messages.log
+x.json
