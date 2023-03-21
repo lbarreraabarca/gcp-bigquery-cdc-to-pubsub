@@ -33,7 +33,6 @@ class InsertService(object):
             bigquery_operator = BigQueryOperator()
             sql = SQL()
             query = sql.create_query(job_id=job_id)
-            LOG.info(f"Applying query {query}")
             df = bigquery_operator.query(query)
             statement = sql.get_sql_statement(df, job_id)
             statement_list = sql.get_values_from_insert_statement(statement)
